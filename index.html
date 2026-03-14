@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Harini M — Data Analyst Portfolio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --pink:#ff2d78; --pink-light:#ff6fa8; --pink-pale:rgba(255,45,120,0.12);
+      --pink-glow:rgba(255,45,120,0.25); --black:#080810; --surface:#100f1a;
+      --card:#15131f; --border:rgba(255,45,120,0.18); --text:#f0eaf5; --muted:#8a7f96;
+    }
+    *{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{background:var(--black);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden}
+    body::before{content:'';position:fixed;inset:0;z-index:0;pointer-events:none;
+      background-image:radial-gradient(rgba(255,45,120,0.07) 1px,transparent 1px);background-size:28px 28px}
+    section,nav{position:relative;z-index:1}
+    h1,h2,h3,h4{font-family:'Playfair Display',serif}
+
+    /* NAVBAR */
+    #mainNav{background:rgba(8,8,16,0.85);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);transition:background 0.3s}
+    .navbar-brand{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--pink)!important}
+    .nav-link{color:var(--muted)!important;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+    .nav-link:hover,.nav-link.active{color:var(--pink)!important}
+
+    /* HERO */
+    #hero{min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;background:var(--pink-pale);
+      border:1px solid var(--border);color:var(--pink-light);padding:6px 18px;border-radius:100px;
+      font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;margin-bottom:28px;animation:fadeUp .7s ease both}
+    .hero-badge::before{content:'';width:7px;height:7px;background:var(--pink);border-radius:50%;
+      animation:pulse-dot 1.6s ease-in-out infinite}
+    @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.2}}
+    .hero-title{font-size:clamp(2.8rem,6vw,5.5rem);font-weight:900;line-height:1.05;
+      margin-bottom:20px;animation:fadeUp .7s .1s ease both}
+    .hero-title span{color:var(--pink)}
+    .hero-sub{font-size:1rem;color:var(--muted);line-height:1.8;max-width:580px;
+      margin-bottom:40px;animation:fadeUp .7s .2s ease both}
+    .btn-pink{background:var(--pink);color:#fff;border:none;padding:13px 32px;border-radius:6px;
+      font-size:.82rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;
+      text-decoration:none;transition:all .25s;display:inline-block}
+    .btn-pink:hover{background:#ff5296;color:#fff;transform:translateY(-3px);box-shadow:0 8px 28px var(--pink-glow)}
+    .btn-outline-pink{background:transparent;color:var(--pink-light);border:1px solid var(--border);
+      padding:13px 32px;border-radius:6px;font-size:.82rem;font-weight:500;letter-spacing:.08em;
+      text-transform:uppercase;text-decoration:none;transition:all .25s;display:inline-block}
+    .btn-outline-pink:hover{border-color:var(--pink);color:var(--pink);transform:translateY(-3px)}
+    .hero-actions{animation:fadeUp .7s .3s ease both;display:flex;gap:14px;flex-wrap:wrap}
+    .hero-shape{position:absolute;border-radius:50%;
+      background:radial-gradient(circle,var(--pink-glow) 0%,transparent 70%);
+      pointer-events:none;animation:floatShape 7s ease-in-out infinite}
+    .hs1{width:500px;height:500px;right:-100px;top:-80px}
+    .hs2{width:300px;height:300px;left:5%;bottom:5%;animation-delay:-3.5s;opacity:.5}
+    @keyframes floatShape{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+    .hero-stats{display:flex;gap:40px;margin-top:48px;animation:fadeUp .7s .4s ease both}
+    .stat-item{display:flex;flex-direction:column;gap:4px}
+    .stat-num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:900;color:var(--pink);line-height:1}
+    .stat-label{font-size:.65rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+    .stat-divider{width:1px;background:var(--border);align-self:stretch}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeLeft{from{opacity:0;transform:translateX(24px)}to{opacity:1;transform:translateX(0)}}
+
+    /* SECTIONS */
+    .section-wrap{padding:100px 0}
+    .section-eyebrow{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--pink);margin-bottom:12px}
+    .section-title{font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:900;line-height:1.15;margin-bottom:52px}
+
+    /* ABOUT */
+    #about{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .about-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;height:100%}
+    .about-icon{width:52px;height:52px;border-radius:12px;background:var(--pink-pale);border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;font-size:1.4rem;margin-bottom:16px;color:var(--pink)}
+    .about-card h5{font-size:1rem;font-weight:500;margin-bottom:8px}
+    .about-card p{font-size:.83rem;color:var(--muted);line-height:1.8;margin:0}
+
+    /* SKILLS */
+    .skill-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:28px 24px;
+      text-align:center;transition:all .3s;position:relative;overflow:hidden}
+    .skill-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--pink);
+      transform:scaleX(0);transition:transform .3s;transform-origin:left}
+    .skill-card:hover::before{transform:scaleX(1)}
+    .skill-card:hover{border-color:rgba(255,45,120,.4);transform:translateY(-6px);box-shadow:0 16px 40px var(--pink-glow)}
+    .skill-img-wrap{width:80px;height:80px;border-radius:16px;background:var(--pink-pale);border:1px solid var(--border);
+      display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+    .skill-name{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;margin-bottom:8px}
+    .skill-desc{font-size:.75rem;color:var(--muted);line-height:1.7;margin-bottom:18px}
+    .skill-bar-track{background:rgba(255,255,255,.06);border-radius:100px;height:4px;overflow:hidden}
+    .skill-bar{height:100%;border-radius:100px;background:var(--pink);
+      transition:width 1.4s cubic-bezier(.4,0,.2,1);width:0}
+    .skill-level{font-size:.62rem;color:var(--muted);margin-top:6px}
+
+    /* CERTIFICATE */
+    #certificate{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+    .cert-card{background:var(--card);border:1px solid rgba(134,188,37,0.35);border-radius:20px;padding:48px 40px;
+      position:relative;overflow:hidden;max-width:860px;margin:0 auto}
+    .cert-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;
+      background:linear-gradient(90deg,#86BC25,#b8e04a,#86BC25)}
+    .cert-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(134,188,37,0.12);
+      border:1px solid rgba(134,188,37,0.3);color:#86BC25;padding:6px 16px;border-radius:100px;
+      font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:28px}
+    .cert-logo{width:68px;height:68px;border-radius:14px;background:#86BC25;display:flex;align-items:center;
+      justify-content:center;font-size:2rem;font-weight:900;color:#fff;font-family:'Playfair Display',serif;flex-shrink:0}
+    .cert-title{font-family:'Playfair Display',serif;font-size:1.7rem;font-weight:900;margin-bottom:6px}
+    .cert-issuer{font-size:.9rem;color:#86BC25;font-weight:500;margin-bottom:16px}
+    .cert-desc{font-size:.88rem;color:var(--muted);line-height:1.9;margin-bottom:28px}
+    .cert-skills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px}
+    .cert-skill-tag{font-size:.68rem;padding:5px 14px;border-radius:6px;background:rgba(134,188,37,0.1);
+      color:#a8d840;border:1px solid rgba(134,188,37,0.25)}
+    .cert-meta{display:flex;gap:36px;flex-wrap:wrap;padding-top:24px;border-top:1px solid var(--border);align-items:center}
+    .cert-meta-item{display:flex;flex-direction:column;gap:3px}
+    .cert-meta-label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+    .cert-meta-value{font-size:.85rem;font-weight:500;color:var(--text)}
+    .btn-cert{display:inline-flex;align-items:center;gap:8px;background:#86BC25;color:#fff;
+      padding:12px 28px;border-radius:6px;font-size:.8rem;font-weight:500;letter-spacing:.08em;
+      text-transform:uppercase;text-decoration:none;transition:all .25s}
+    .btn-cert:hover{background:#9dd42b;color:#fff;transform:translateY(-3px);box-shadow:0 8px 24px rgba(134,188,37,0.4)}
+
+    /* EDUCATION */
+    .edu-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:32px;
+      display:flex;gap:24px;align-items:flex-start;transition:all .3s}
+    .edu-card:hover{border-color:rgba(255,45,120,.4);transform:translateY(-4px)}
+    .edu-icon{width:52px;height:52px;border-radius:12px;flex-shrink:0;background:var(--pink-pale);
+      border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--pink)}
+    .edu-year{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--pink);margin-bottom:6px}
+    .edu-degree{font-size:1rem;font-weight:700;margin-bottom:4px}
+    .edu-school{font-size:.82rem;color:var(--muted)}
+
+    /* CONTACT */
+    #contact{text-align:center}
+    .contact-link{display:inline-flex;align-items:center;gap:10px;padding:14px 26px;border-radius:10px;
+      background:var(--card);border:1px solid var(--border);color:var(--text);text-decoration:none;
+      font-size:.8rem;transition:all .25s}
+    .contact-link:hover{border-color:var(--pink);color:var(--pink);transform:translateY(-3px);box-shadow:0 8px 24px var(--pink-glow)}
+    .contact-link i{font-size:1rem}
+
+    /* FOOTER */
+    footer{padding:28px;border-top:1px solid var(--border);text-align:center;font-size:.72rem;color:var(--muted)}
+    footer span{color:var(--pink)}
+
+    /* SCROLL REVEAL */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* RESPONSIVE */
+    @media(max-width:768px){
+      .section-wrap{padding:64px 0}
+      .hero-actions{flex-direction:column}
+      .hero-stats{gap:20px}
+      .cert-card{padding:28px 20px}
+      .cert-meta{gap:20px}
+      .cert-title{font-size:1.3rem}
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="#hero">Harini M.</a>
+    <button class="navbar-toggler border-0" type="button"
+      data-bs-toggle="collapse" data-bs-target="#navMenu" style="color:var(--pink)">
+      <i class="bi bi-list fs-4"></i>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav gap-2">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#skills">Skills</a></li>
+        <li class="nav-item"><a class="nav-link" href="#certificate">Certificate</a></li>
+        <li class="nav-item"><a class="nav-link" href="#education">Education</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-shape hs1"></div>
+  <div class="hero-shape hs2"></div>
+  <div class="container">
+    <div class="hero-badge">
+      <i class="bi bi-graph-up-arrow"></i> Open to Internships &amp; Opportunities
+    </div>
+    <h1 class="hero-title">
+      Hi, I'm <span>Harini M</span><br>
+      Data Analyst in the Making
+    </h1>
+    <p class="hero-sub">
+      2nd Year B.E. Computer Science &amp; Engineering student at
+      Rajalakshmi Institute of Technology, Chennai.
+      Passionate about turning raw data into clear insights using
+      Tableau, Excel, Power BI &amp; Figma.
+    </p>
+    <div class="hero-actions">
+      <a href="#certificate" class="btn-pink">View My Work</a>
+      <a href="#contact" class="btn-outline-pink">Get In Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Tools</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">2nd</div>
+        <div class="stat-label">Year B.E.</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-num">1</div>
+        <div class="stat-label">Certification</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section-wrap">
+  <div class="container">
+    <div class="section-eyebrow">// Who I Am</div>
+    <h2 class="section-title">About Me</h2>
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-7 reveal">
+        <p style="font-size:.95rem;color:var(--muted);line-height:1.9;margin-bottom:16px">
+          I'm <strong style="color:var(--text)">Harini M</strong>, a 2nd year B.E. Computer Science &amp;
+          Engineering student at <strong style="color:var(--pink)">Rajalakshmi Institute of Technology</strong>,
+          Chennai. I'm deeply passionate about data analytics and love uncovering stories hidden inside data.
+        </p>
+        <p style="font-size:.95rem;color:var(--muted);line-height:1.9;margin-bottom:16px">
+          I work with <strong style="color:var(--text)">Tableau, Microsoft Excel, Power BI</strong> to build
+          dashboards and reports, and use <strong style="color:var(--text)">Figma</strong> to design clean,
+          user-friendly data interfaces.
+        </p>
+        <p style="font-size:.95rem;color:var(--muted);line-height:1.9;margin-bottom:32px">
+          I completed the <strong style="color:var(--pink)">Deloitte Data Analytics Virtual Job Simulation</strong>
+          on Forage — gaining real-world consulting experience. I'm actively looking for
+          <strong style="color:var(--text)">internships</strong> where I can grow and make an impact with data.
+        </p>
+        <a href="#contact" class="btn-pink">Let's Talk</a>
+      </div>
+      <div class="col-lg-5">
+        <div class="row g-3">
+          <div class="col-6 reveal">
+            <div class="about-card">
+              <div class="about-icon"><i class="bi bi-mortarboard-fill"></i></div>
+              <h5>Education</h5>
+              <p>B.E. CSE &middot; 2nd Year<br>Rajalakshmi Institute of Technology</p>
+            </div>
+          </div>
+          <div class="col-6 reveal">
+            <div class="about-card">
+              <div class="about-icon"><i class="bi bi-bar-chart-fill"></i></div>
+              <h5>Focus Area</h5>
+              <p>Data Analysis, Visualization &amp; Dashboard Design</p>
+            </div>
+          </div>
+          <div class="col-6 reveal">
+            <div class="about-card">
+              <div class="about-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+              <h5>Status</h5>
+              <p>Open to Internships &amp; Entry-Level Roles</p>
+            </div>
+          </div>
+          <div class="col-6 reveal">
+            <div class="about-card">
+              <div class="about-icon"><i class="bi bi-geo-alt-fill"></i></div>
+              <h5>Location</h5>
+              <p>Chennai, Tamil Nadu, India</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills" class="section-wrap">
+  <div class="container">
+    <div class="section-eyebrow">// What I Work With</div>
+    <h2 class="section-title">My Skills &amp; Tools</h2>
+    <div class="row g-4">
+
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="skill-card">
+          <div class="skill-img-wrap">
+            <svg viewBox="0 0 52 52" width="52" height="52" fill="none">
+              <rect x="22" y="8" width="8" height="20" rx="2" fill="#ff2d78"/>
+              <rect x="10" y="15" width="8" height="6" rx="2" fill="#ff6fa8"/>
+              <rect x="34" y="15" width="8" height="6" rx="2" fill="#ff6fa8"/>
+              <rect x="22" y="34" width="8" height="10" rx="2" fill="#ff6fa8"/>
+              <rect x="16" y="28" width="20" height="8" rx="2" fill="#ff2d78" opacity=".4"/>
+            </svg>
+          </div>
+          <div class="skill-name">Tableau</div>
+          <div class="skill-desc">Building interactive dashboards and visual data stories from complex datasets.</div>
+          <div class="skill-bar-track"><div class="skill-bar" data-width="78"></div></div>
+          <div class="skill-level">Intermediate &middot; Dashboards &middot; Filters &middot; Charts</div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="skill-card">
+          <div class="skill-img-wrap">
+            <svg viewBox="0 0 52 52" width="52" height="52" fill="none">
+              <rect x="10" y="10" width="32" height="32" rx="3" fill="#ff2d78" opacity=".12" stroke="#ff2d78" stroke-width="1"/>
+              <rect x="10" y="10" width="14" height="6" rx="1.5" fill="#ff2d78"/>
+              <rect x="26" y="10" width="16" height="6" rx="1.5" fill="#ff6fa8"/>
+              <rect x="10" y="19" width="14" height="6" rx="1.5" fill="#ff6fa8"/>
+              <rect x="26" y="19" width="16" height="6" rx="1.5" fill="#ff2d78"/>
+              <rect x="10" y="28" width="14" height="6" rx="1.5" fill="#ff2d78"/>
+              <rect x="26" y="28" width="16" height="6" rx="1.5" fill="#ff6fa8"/>
+              <path d="M14 38 L20 32 M20 38 L14 32" stroke="#ff2d78" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="skill-name">Microsoft Excel</div>
+          <div class="skill-desc">VLOOKUP, Pivot Tables, data cleaning and dynamic charts for business reports.</div>
+          <div class="skill-bar-track"><div class="skill-bar" data-width="85"></div></div>
+          <div class="skill-level">Advanced &middot; Pivot Tables &middot; VLOOKUP &middot; Charts</div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="skill-card">
+          <div class="skill-img-wrap">
+            <svg viewBox="0 0 52 52" width="52" height="52" fill="none">
+              <rect x="8" y="30" width="7" height="14" rx="2" fill="#ff6fa8"/>
+              <rect x="18" y="22" width="7" height="22" rx="2" fill="#ff2d78"/>
+              <rect x="28" y="16" width="7" height="28" rx="2" fill="#ff2d78"/>
+              <rect x="38" y="26" width="7" height="18" rx="2" fill="#ff6fa8"/>
+              <rect x="8" y="44" width="37" height="2" rx="1" fill="#ff2d78" opacity=".3"/>
+              <path d="M22 8 L17 16 H21 L16 24 L25 14 H21 Z" fill="#fff" opacity=".85"/>
+            </svg>
+          </div>
+          <div class="skill-name">Power BI</div>
+          <div class="skill-desc">DAX-powered reports and dynamic dashboards for real-time business insights.</div>
+          <div class="skill-bar-track"><div class="skill-bar" data-width="72"></div></div>
+          <div class="skill-level">Intermediate &middot; DAX &middot; Reports &middot; Data Modeling</div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-md-6 reveal">
+        <div class="skill-card">
+          <div class="skill-img-wrap">
+            <svg viewBox="0 0 52 52" width="52" height="52" fill="none">
+              <rect x="13" y="8" width="12" height="12" rx="6" fill="#ff6fa8"/>
+              <rect x="27" y="8" width="12" height="12" rx="3" fill="#ff2d78"/>
+              <rect x="13" y="22" width="12" height="12" rx="3" fill="#ff2d78" opacity=".6"/>
+              <rect x="27" y="22" width="12" height="12" rx="6" fill="#ff6fa8" opacity=".8"/>
+              <rect x="13" y="36" width="12" height="12" rx="3" fill="#ff2d78"/>
+              <rect x="27" y="36" width="12" height="12" rx="3" fill="#ff6fa8" opacity=".5"/>
+            </svg>
+          </div>
+          <div class="skill-name">Figma</div>
+          <div class="skill-desc">Designing clean dashboard wireframes and UI prototypes ready for handoff.</div>
+          <div class="skill-bar-track"><div class="skill-bar" data-width="68"></div></div>
+          <div class="skill-level">Intermediate &middot; UI Design &middot; Prototyping &middot; Wireframes</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATE -->
+<section id="certificate" class="section-wrap">
+  <div class="container">
+    <div class="section-eyebrow">// My Experience</div>
+    <h2 class="section-title">Certification</h2>
+    <div class="cert-card reveal">
+      <div class="cert-badge"><i class="bi bi-patch-check-fill"></i> Verified Completion Certificate</div>
+      <div class="d-flex align-items-start gap-4 mb-4 flex-wrap">
+        <div class="cert-logo">D</div>
+        <div>
+          <div class="cert-title">Data Analytics Job Simulation</div>
+          <div class="cert-issuer">
+            <i class="bi bi-building me-1"></i> Deloitte &nbsp;&middot;&nbsp;
+            <i class="bi bi-laptop me-1"></i> Forage Virtual Experience Program
+          </div>
+        </div>
+      </div>
+      <div class="cert-desc">
+        Completed Deloitte's Data Analytics Virtual Job Simulation on Forage — a real-world consulting
+        experience that mirrors the work of a Deloitte data analyst. The program involved analysing
+        business datasets, identifying trends, building data models and presenting data-driven
+        recommendations the way a professional consultant would. This hands-on simulation gave me
+        practical exposure to the tools and thinking used in real analytics projects.
+      </div>
+      <div class="cert-skills">
+        <span class="cert-skill-tag">Data Analysis</span>
+        <span class="cert-skill-tag">Microsoft Excel</span>
+        <span class="cert-skill-tag">Tableau</span>
+        <span class="cert-skill-tag">Data Interpretation</span>
+        <span class="cert-skill-tag">Business Insights</span>
+        <span class="cert-skill-tag">Data Visualisation</span>
+        <span class="cert-skill-tag">Consulting Mindset</span>
+      </div>
+      <div class="cert-meta">
+        <div class="cert-meta-item">
+          <span class="cert-meta-label">Issued by</span>
+          <span class="cert-meta-value">Deloitte via Forage</span>
+        </div>
+        <div class="cert-meta-item">
+          <span class="cert-meta-label">Year</span>
+          <span class="cert-meta-value">2024</span>
+        </div>
+        <div class="cert-meta-item">
+          <span class="cert-meta-label">Type</span>
+          <span class="cert-meta-value">Virtual Job Simulation</span>
+        </div>
+        <div class="ms-auto">
+          <a href="https://www.theforage.com/completion-certificates/9PBTqmSxAf6zZTseP/io9DzWKe3PTsiS6GG_9PBTqmSxAf6zZTseP_69b10e7e86bcbe7ef04a0057_1773407189414_completion_certificate.pdf"
+            target="_blank" class="btn-cert">
+            <i class="bi bi-file-earmark-check-fill"></i> View Certificate
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education" class="section-wrap" style="background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+  <div class="container">
+    <div class="section-eyebrow">// My Journey</div>
+    <h2 class="section-title">Education</h2>
+    <div class="row g-4">
+      <div class="col-lg-6 reveal">
+        <div class="edu-card">
+          <div class="edu-icon"><i class="bi bi-building"></i></div>
+          <div>
+            <div class="edu-year">2023 — 2027 (Present)</div>
+            <div class="edu-degree">B.E. Computer Science &amp; Engineering</div>
+            <div class="edu-school">Rajalakshmi Institute of Technology, Chennai</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="edu-card">
+          <div class="edu-icon" style="background:rgba(134,188,37,0.12);border-color:rgba(134,188,37,0.3);color:#86BC25">
+            <i class="bi bi-patch-check-fill"></i>
+          </div>
+          <div>
+            <div class="edu-year" style="color:#86BC25">2024</div>
+            <div class="edu-degree">Deloitte Data Analytics Job Simulation</div>
+            <div class="edu-school">Forage Virtual Experience &middot; Data Analysis &amp; Business Consulting</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 reveal">
+        <div class="edu-card">
+          <div class="edu-icon"><i class="bi bi-bar-chart-steps"></i></div>
+          <div>
+            <div class="edu-year">2024 — Present</div>
+            <div class="edu-degree">Data Analytics Self-Learning</div>
+            <div class="edu-school">Tableau, Power BI, Excel &amp; Figma &middot; Online Courses &amp; Practice Projects</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section-wrap">
+  <div class="container">
+    <div class="section-eyebrow text-center">// Let's Connect</div>
+    <h2 class="section-title text-center">Get In Touch</h2>
+    <p class="text-center reveal" style="color:var(--muted);font-size:.92rem;max-width:520px;margin:0 auto 48px;line-height:1.8">
+      I'm actively looking for data analyst internships and fresher roles.
+      If you have a project or opportunity — let's talk!
+    </p>
+    <div class="d-flex justify-content-center flex-wrap gap-3 reveal">
+      <a href="mailto:mharini1501@gmail.com" class="contact-link">
+        <i class="bi bi-envelope-fill" style="color:var(--pink)"></i> mharini1501@gmail.com
+      </a>
+      <a href="https://www.linkedin.com/in/harinim1501/" target="_blank" class="contact-link">
+        <i class="bi bi-linkedin" style="color:var(--pink)"></i> linkedin.com/in/harinim1501
+      </a>
+      <a href="https://github.com/HariniM-Esc" target="_blank" class="contact-link">
+        <i class="bi bi-github" style="color:var(--pink)"></i> github.com/HariniM-Esc
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  Built with &#10084;&#65039; by <span>Harini M</span>
+  &nbsp;&middot;&nbsp; Data Analyst Portfolio
+  &nbsp;&middot;&nbsp; &copy; 2025
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Animate skill bars on scroll
+  const skillObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting)
+        e.target.querySelectorAll('.skill-bar').forEach(b => b.style.width = b.dataset.width + '%');
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('#skills').forEach(s => skillObserver.observe(s));
+
+  // Fade-in reveal on scroll
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80);
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  // Active nav link on scroll
+  const sections = document.querySelectorAll('section[id]');
+  const navLinks  = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(s => { if (window.scrollY >= s.offsetTop - 120) current = s.id; });
+    navLinks.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + current));
+  });
+
+  // Darken navbar on scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').style.background =
+      window.scrollY > 50 ? 'rgba(8,8,16,0.98)' : 'rgba(8,8,16,0.85)';
+  });
+</script>
+</body>
+</html>
